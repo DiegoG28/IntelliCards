@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faRightLong } from '@fortawesome/free-solid-svg-icons/faRightLong';
 
 const CustomButton = props => {
+   const { color } = props;
+
    const onClick = () => {
       alert('Hola Amor');
    };
@@ -11,7 +13,7 @@ const CustomButton = props => {
       <Pressable
          style={styles.button}
          onPress={onClick}
-         backgroundColor={props.color}
+         backgroundColor={color}
       >
          <FontAwesomeIcon
             icon={faRightLong}

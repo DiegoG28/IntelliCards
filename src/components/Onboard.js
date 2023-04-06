@@ -1,17 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
-import CustomButton from './Button';
+import CustomButton from '@components/Button';
 
-const Onboard = () => {
+const Onboard = props => {
+   const { title, image, children } = props;
+
    return (
       <View style={styles.container}>
-         <Text style={styles.title}>
-            Autocompletado de información sobre músculos
-         </Text>
+         <Text style={styles.title}>{title}</Text>
          <View style={styles.image} />
-         <Text style={styles.description}>
-            Crea tarjetas escribiendo únicamente el músculo que quieras
-            estudiar. Nosotros haremos el resto por ti.
-         </Text>
+         <Text style={styles.description}>{children}</Text>
          <View style={styles.buttonContainer}>
             <CustomButton
                text="Siguiente"
@@ -32,8 +29,7 @@ const styles = StyleSheet.create({
       width: 194,
       height: 194,
       backgroundColor: '#eee',
-      marginTop: 30,
-      marginBottom: 30,
+      marginVertical: 30,
       alignSelf: 'center',
    },
    title: {
@@ -43,8 +39,6 @@ const styles = StyleSheet.create({
    },
    description: {
       fontFamily: 'Inter',
-      justifyContent: 'center',
-      alignItems: 'center',
       textAlign: 'center',
       fontSize: 18,
    },
