@@ -10,6 +10,9 @@ module.exports = function (api) {
                alias: {
                   '@screens': './src/screens',
                   '@components': './src/components',
+                  '@navigation': './src/navigation',
+                  '@assets': './assets',
+                  '@fonts': './assets/fonts',
                },
             },
          ],

@@ -1,25 +1,19 @@
-import { StyleSheet, Pressable, Text, View } from 'react-native';
+import { StyleSheet, Pressable } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faRightLong } from '@fortawesome/free-solid-svg-icons/faRightLong';
 
-const CustomButton = props => {
-   const { color } = props;
-
-   const onClick = () => {
-      alert('Hola Amor');
-   };
+const IconButton = props => {
+   const { icon, color, onPress } = props;
+   // const onClick = () => {
+   //    alert('Hola Amor');
+   // };
 
    return (
       <Pressable
          style={styles.button}
-         onPress={onClick}
+         onPress={onPress}
          backgroundColor={color}
       >
-         <FontAwesomeIcon
-            icon={faRightLong}
-            size={20}
-         />
-         {/* <Text style={styles.text}>{props.text}</Text> */}
+         <FontAwesomeIcon icon={icon} size={20} />
       </Pressable>
    );
 };
@@ -40,4 +34,4 @@ const styles = StyleSheet.create({
    },
 });
 
-export default CustomButton;
+export default IconButton;

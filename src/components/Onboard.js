@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
-import CustomButton from '@components/Button';
+import { faRightLong } from '@fortawesome/free-solid-svg-icons/faRightLong';
+import IconButton from '@components/IconButton';
+import TextButton from '@components/TextButton';
 
 const Onboard = props => {
-   const { title, image, children } = props;
+   const { title, image, children, isLastScreen, onNextClick } = props;
 
    return (
       <View style={styles.container}>
@@ -10,10 +12,19 @@ const Onboard = props => {
          <View style={styles.image} />
          <Text style={styles.description}>{children}</Text>
          <View style={styles.buttonContainer}>
-            <CustomButton
-               text="Siguiente"
-               color="#D8B2E5"
-            />
+            {isLastScreen ? (
+               <TextButton
+                  text="Comenzar"
+                  color="#C6E9FB"
+                  onPress={onNextClick}
+               />
+            ) : (
+               <IconButton
+                  icon={faRightLong}
+                  color="#D8B2E5"
+                  onPress={onNextClick}
+               />
+            )}
          </View>
       </View>
    );

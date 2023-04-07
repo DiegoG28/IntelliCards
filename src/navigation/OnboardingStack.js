@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import OnboardingOne from '../screens/Onboarding-1';
-import OnboardingTwo from '../screens/Onboarding-2';
+import OnboardingOne from '@screens/Onboarding-1';
+import OnboardingTwo from '@screens/Onboarding-2';
 import OnboardingThree from '@screens/Onboarding-3';
 
 const Stack = createStackNavigator();
