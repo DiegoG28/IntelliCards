@@ -14,10 +14,11 @@ const Onboard = props => {
          <View style={styles.buttonContainer}>
             {isLastScreen ? (
                <TextButton
-                  text="Comenzar"
                   color="#C6E9FB"
                   onPress={onNextClick}
-               />
+               >
+                  Comenzar
+               </TextButton>
             ) : (
                <IconButton
                   icon={faRightLong}

@@ -1,18 +1,25 @@
 import { StyleSheet, View, Image, Text } from 'react-native';
-import rectangularLogo from '@assets/rectangular-logo.png';
 import GoogleButton from '@components/GoogleButton';
 import Layout from '@components/Layout';
+import rectangularLogo from '@assets/rectangular-logo.png';
 
-const Login = () => {
+const Login = ({ navigation }) => {
+   const handleSignIn = () => {
+      navigation.navigate('Navigation');
+   };
+
    return (
       <Layout>
          <View style={styles.container}>
-            <Image source={rectangularLogo} style={styles.image} />
+            <Image
+               source={rectangularLogo}
+               style={styles.image}
+            />
             <Text style={styles.text}>
                Inicia sesión fácilmente con tu cuenta de Google. No te
                preocupes, tus datos están completamente seguros.
             </Text>
-            <GoogleButton />
+            <GoogleButton onPress={handleSignIn} />
          </View>
       </Layout>
    );

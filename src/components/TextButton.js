@@ -1,7 +1,7 @@
 import { StyleSheet, Pressable, Text, View } from 'react-native';
 
 const TextButton = props => {
-   const { text, color, onPress } = props;
+   const { children, color, onPress } = props;
    // const onClick = () => {
    //    alert('Hola Amor');
    // };
@@ -12,7 +12,7 @@ const TextButton = props => {
          onPress={onPress}
          backgroundColor={color}
       >
-         <Text style={styles.text}>{props.text}</Text>
+         <Text style={styles.text}>{children}</Text>
       </Pressable>
    );
 };

@@ -18,8 +18,6 @@ const Layout = props => {
 const styles = StyleSheet.create({
    root: {
       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
       backgroundColor: '#F7F7F9',
    },
    container: {

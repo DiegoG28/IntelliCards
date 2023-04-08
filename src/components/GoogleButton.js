@@ -2,10 +2,18 @@ import { StyleSheet, Pressable, Image, Text } from 'react-native';
 
 import googleLogo from '@assets/google-logo.png';
 
-const GoogleButton = () => {
+const GoogleButton = props => {
+   const { onPress } = props;
+
    return (
-      <Pressable style={styles.button}>
-         <Image source={googleLogo} style={styles.icon} />
+      <Pressable
+         style={styles.button}
+         onPress={onPress}
+      >
+         <Image
+            source={googleLogo}
+            style={styles.icon}
+         />
          <Text style={styles.text}>Acceder con Google</Text>
       </Pressable>
    );

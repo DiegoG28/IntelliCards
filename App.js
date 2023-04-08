@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import OnboardingStack from '@navigation/OnboardingStack';
 import Login from '@screens/Login';
+import BottomNav from '@components/BottomNav';
 
 const Stack = createStackNavigator();
 
@@ -36,16 +37,11 @@ export default function App() {
                component={Login}
                options={{ headerShown: false }}
             />
-
-            {/* <Stack.Screen
-                     name="Login"
-                     component={LoginScreen}
-                  />
-
-                  <Stack.Screen
-                     name="Main"
-                     component={MainStack}
-                  /> */}
+            <Stack.Screen
+               name="Navigation"
+               component={BottomNav}
+               options={{ headerShown: false }}
+            />
          </Stack.Navigator>
       </NavigationContainer>
    );
