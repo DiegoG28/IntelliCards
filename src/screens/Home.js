@@ -4,7 +4,11 @@ import TextInput from '@components/CustomTextInput';
 import TextButton from '@components/TextButton';
 import logo from '@assets/logo.png';
 
-const Home = () => {
+const Home = ({ navigation }) => {
+   const handleCardView = () => {
+      navigation.navigate('CardView');
+   };
+
    return (
       <Layout>
          <View style={styles.container}>
@@ -18,7 +22,7 @@ const Home = () => {
             <View style={styles.createSection}>
                <TextInput />
                <View style={{ height: 20 }} />
-               <TextButton color="#C6E9FB">Crear tarjeta</TextButton>
+               <TextButton color="#C6E9FB" onPress={handleCardView}>Crear tarjeta</TextButton>
             </View>
          </View>
       </Layout>
