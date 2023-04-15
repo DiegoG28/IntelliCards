@@ -8,6 +8,9 @@ const Home = ({ navigation }) => {
    const handleCardView = () => {
       navigation.navigate('CardView');
    };
+   const handleCardList = () => {
+      navigation.navigate('CardList');
+   };
 
    return (
       <Layout>
@@ -23,6 +26,8 @@ const Home = ({ navigation }) => {
                <TextInput />
                <View style={{ height: 20 }} />
                <TextButton color="#C6E9FB" onPress={handleCardView}>Crear tarjeta</TextButton>
+               <View style={{ height: 20 }} />
+               <TextButton color="#D8B2E5" onPress={handleCardList}>Lista de tarjetas</TextButton>
             </View>
          </View>
       </Layout>
