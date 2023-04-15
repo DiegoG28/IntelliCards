@@ -25,18 +25,6 @@ const CardList = () => {
                title="Serratus Major"
                origin="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
             />
-            <MinimizedCard
-               title="Serratus Major2"
-               origin="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-            />
-            <MinimizedCard
-               title="Serratus Major2"
-               origin="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-            />
-            <MinimizedCard
-               title="Serratus Major2"
-               origin="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-            />
             </ScrollView>
          </View>
       </Layout>

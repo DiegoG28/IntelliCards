@@ -1,12 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
+import TouchableIcon from './TouchableIcon';
+import { faShareFromSquare, faTrashCan, faArrowAltCircleUp} from '@fortawesome/free-regular-svg-icons';
 
 const Card = props => {
-   const { title, origin } = props;
+   const { title, origin} = props;
 
    return (
       <View style={styles.container}>
          <Text style={styles.title}>{title}</Text>
          <Text numberOfLines={3} style={styles.subtitle}>Origen: <Text style={styles.description}>{origin}</Text></Text>
+         <View style={styles.iconContainer}> 
+         <TouchableIcon
+            onPress={() => console.log('pruebita:)')} 
+            icon={faArrowAltCircleUp}/>
+         
+         <TouchableIcon
+            onPress={() => console.log('pruebita:)')} 
+            icon={faShareFromSquare}/>
+
+         <TouchableIcon 
+            onPress={() => console.log('pruebita:)')} 
+            icon={faTrashCan}/>
+         </View>
       </View>
    );
 };
@@ -39,6 +54,11 @@ const styles = StyleSheet.create({
    description: {
       fontFamily: 'Inter',
       fontSize: 16,
+   },
+   iconContainer: {
+      flexDirection: "row",
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
    }
 });
 
