@@ -9,11 +9,10 @@ const OnboardingTwo = ({ navigation }) => {
    return (
       <Layout>
          <Onboard
-            title="Autocompletado de información sobre músculos"
+            title="Organización de tarjetas"
             onNextClick={handleNextClick}
          >
-            Crea tarjetas escribiendo únicamente el músculo que quieras
-            estudiar. Nosotros haremos el resto por ti. 2
+            Crea carpetas y organiza tus tarjetas de estudio como más te convenga.
          </Onboard>
       </Layout>
    );

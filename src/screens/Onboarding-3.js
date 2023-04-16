@@ -9,12 +9,11 @@ const OnboardingThree = ({ navigation }) => {
    return (
       <Layout>
          <Onboard
-            title="Autocompletado de información sobre músculos"
+            title="Intercambio de tarjetas"
             onNextClick={handleNextClick}
             isLastScreen
          >
-            Crea tarjetas escribiendo únicamente el músculo que quieras
-            estudiar. Nosotros haremos el resto por ti. 3
+            Importa y exporta tus tarjetas para facilitar su intercambio entre otras personas.
          </Onboard>
       </Layout>
    );
