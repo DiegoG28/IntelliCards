@@ -10,17 +10,15 @@ const Card = props => {
          <Text style={styles.title}>{title}</Text>
          <Text numberOfLines={3} style={styles.subtitle}>Origen: <Text style={styles.description}>{origin}</Text></Text>
          <View style={styles.iconContainer}> 
-         <TouchableIcon
-            onPress={() => console.log('pruebita:)')} 
-            icon={faArrowAltCircleUp}/>
-         
-         <TouchableIcon
-            onPress={() => console.log('pruebita:)')} 
-            icon={faShareFromSquare}/>
-
-         <TouchableIcon 
-            onPress={() => console.log('pruebita:)')} 
-            icon={faTrashCan}/>
+            <TouchableIcon
+               onPress={() => console.log('pruebita:)')} 
+               icon={faArrowAltCircleUp}/>
+            <TouchableIcon
+               onPress={() => console.log('pruebita:)')} 
+               icon={faShareFromSquare}/>
+            <TouchableIcon 
+               onPress={() => console.log('pruebita:)')} 
+               icon={faTrashCan}/>
          </View>
       </View>
    );

@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faRightLong } from '@fortawesome/free-solid-svg-icons/faRightLong';
+import { faHome, faGear } from '@fortawesome/free-solid-svg-icons';
 
 import HomeStack from '@navigation/HomeStack';
 import Settings from '@screens/Settings';
@@ -12,7 +12,7 @@ const BottomNav = () => {
       <Tab.Navigator
          initialRouteName="HomeStack"
          screenOptions={{
-            tabBarActiveTintColor: '#42f44b',
+            tabBarActiveTintColor: '#49B1E7',
          }}
       >
          <Tab.Screen
@@ -20,10 +20,10 @@ const BottomNav = () => {
             component={HomeStack}
             options={{
                headerShown: false,
-               tabBarLabel: 'HomeStack',
+               tabBarLabel: 'Inicio',
                tabBarIcon: ({ color, size }) => (
                   <FontAwesomeIcon
-                     icon={faRightLong}
+                     icon={faHome}
                      size={size}
                      color={color}
                   />
@@ -35,10 +35,10 @@ const BottomNav = () => {
             component={Settings}
             options={{
                headerShown: false,
-               tabBarLabel: 'Settings',
+               tabBarLabel: 'Opciones',
                tabBarIcon: ({ color, size }) => (
                   <FontAwesomeIcon
-                     icon={faRightLong}
+                     icon={faGear}
                      size={size}
                      color={color}
                   />

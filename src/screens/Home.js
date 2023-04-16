@@ -2,6 +2,9 @@ import { StyleSheet, View, Image, Text } from 'react-native';
 import Layout from '@components/Layout';
 import TextInput from '@components/CustomTextInput';
 import TextButton from '@components/TextButton';
+import IconButton from '@components/IconButton';
+import TouchableFolder from '@components/TouchableFolder';
+import {faPlus, faFolder } from '@fortawesome/free-solid-svg-icons';
 import logo from '@assets/logo.png';
 
 const Home = ({ navigation }) => {
@@ -26,8 +29,16 @@ const Home = ({ navigation }) => {
                <TextInput />
                <View style={{ height: 20 }} />
                <TextButton color="#C6E9FB" onPress={handleCardView}>Crear tarjeta</TextButton>
-               <View style={{ height: 20 }} />
-               <TextButton color="#D8B2E5" onPress={handleCardList}>Lista de tarjetas</TextButton>
+            </View>
+            <View style={styles.folderSection}>
+               <TouchableFolder onPress={handleCardList} icon={faFolder}>Default</TouchableFolder>
+               <View style={styles.buttonContainer}>
+                  <IconButton
+                     icon={faPlus}
+                     color="#D8B2E5"
+                     onPress={() => console.log('Crear tarjeta')}
+                 />
+               </View>
             </View>
          </View>
       </Layout>
@@ -54,8 +65,11 @@ const styles = StyleSheet.create({
    createSection: {
       marginVertical: 40,
    },
-   createButton: {
-      marginTop: 20,
+   folderSection: {
+   },
+   buttonContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
    },
 });
 
