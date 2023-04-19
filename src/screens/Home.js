@@ -17,8 +17,8 @@ const Home = ({ navigation }) => {
    const [muscleInputValue, setMuscleInputValue] = useState('');
    const [folderInputValue, setFolderInputValue] = useState('');
 
-   const handleCardList = (folder) => {
-      navigation.navigate('CardList', { folder });
+   const handleCardList = folder => {
+      navigation.navigate('CardList', { folder, folders });
    };
 
    const handleCreateFolder = async () => {
@@ -66,7 +66,7 @@ const Home = ({ navigation }) => {
       }
    };
 
-   const saveFoldersToLocalStorage = async (folders) => {
+   const saveFoldersToLocalStorage = async folders => {
       try {
          await AsyncStorage.setItem('folders', JSON.stringify(folders));
       } catch {
@@ -82,7 +82,7 @@ const Home = ({ navigation }) => {
             const defaultFolder = { name: 'Mi carpeta', cards: [] };
             await AsyncStorage.setItem(
                'folders',
-               JSON.stringify([defaultFolder])
+               JSON.stringify([defaultFolder]),
             );
             return [defaultFolder];
          }
@@ -90,7 +90,7 @@ const Home = ({ navigation }) => {
 
          // Comprueba si la carpeta por defecto es la primera en la lista, si no, la coloca al principio
          const defaultFolderIndex = folders.findIndex(
-            (folder) => folder.name === 'Mi carpeta'
+            folder => folder.name === 'Mi carpeta',
          );
          if (defaultFolderIndex !== 0) {
             const defaultFolder = folders.splice(defaultFolderIndex, 1)[0];
@@ -116,16 +116,22 @@ const Home = ({ navigation }) => {
       <Layout>
          <View style={styles.container}>
             <View style={styles.logoContainer}>
-               <Image source={logo} style={styles.image} />
+               <Image
+                  source={logo}
+                  style={styles.image}
+               />
                <Text style={styles.logoText}>IntelliCards</Text>
             </View>
             <View style={styles.createSection}>
                <TextInput
-                  label='Escriba el músculo'
+                  label="Escriba el músculo"
                   onChangeText={setMuscleInputValue}
                />
                <View style={{ height: 20 }} />
-               <TextButton color='#C6E9FB' onPress={handleCreateCard}>
+               <TextButton
+                  color="#C6E9FB"
+                  onPress={handleCreateCard}
+               >
                   Crear tarjeta
                </TextButton>
             </View>
@@ -143,12 +149,12 @@ const Home = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                <IconButton
                   icon={faPlus}
-                  color='#D8B2E5'
+                  color="#D8B2E5"
                   onPress={() => setModalVisible(true)}
                />
             </View>
             <Modal
-               animationType='slide'
+               animationType="slide"
                transparent={true}
                visible={modalVisible}
                onRequestClose={() => setModalVisible(false)}
@@ -169,11 +175,14 @@ const Home = ({ navigation }) => {
                      }}
                   >
                      <TextInput
-                        label='Nombre de carpeta'
+                        label="Nombre de carpeta"
                         onChangeText={setFolderInputValue}
                      />
                      <View style={{ marginBottom: 15 }} />
-                     <TextButton color='#C6E9FB' onPress={handleCreateFolder}>
+                     <TextButton
+                        color="#C6E9FB"
+                        onPress={handleCreateFolder}
+                     >
                         Crear carpeta
                      </TextButton>
                   </View>
