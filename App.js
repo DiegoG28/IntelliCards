@@ -8,6 +8,8 @@ import OnboardingStack from '@navigation/OnboardingStack';
 import Login from '@screens/Login';
 import BottomNav from '@components/BottomNav';
 
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -28,17 +30,17 @@ export default function App() {
       <NavigationContainer>
          <Stack.Navigator>
             <Stack.Screen
-               name="Onboarding"
+               name='Onboarding'
                component={OnboardingStack}
                options={{ headerShown: false }}
             />
             <Stack.Screen
-               name="Login"
+               name='Login'
                component={Login}
                options={{ headerShown: false }}
             />
             <Stack.Screen
-               name="Navigation"
+               name='Navigation'
                component={BottomNav}
                options={{ headerShown: false }}
             />
