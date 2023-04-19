@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { faRightLong } from '@fortawesome/free-solid-svg-icons/faRightLong';
 import IconButton from '@components/IconButton';
 import TextButton from '@components/TextButton';
@@ -9,14 +9,12 @@ const Onboard = props => {
    return (
       <View style={styles.container}>
          <Text style={styles.title}>{title}</Text>
+         <Image source={image} style={styles.image} />
          <View style={styles.image} />
          <Text style={styles.description}>{children}</Text>
          <View style={styles.buttonContainer}>
             {isLastScreen ? (
-               <TextButton
-                  color="#C6E9FB"
-                  onPress={onNextClick}
-               >
+               <TextButton color="#C6E9FB" onPress={onNextClick}>
                   Comenzar
                </TextButton>
             ) : (
@@ -40,7 +38,6 @@ const styles = StyleSheet.create({
    image: {
       width: 194,
       height: 194,
-      backgroundColor: '#eee',
       marginVertical: 30,
       alignSelf: 'center',
    },
