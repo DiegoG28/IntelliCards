@@ -7,14 +7,21 @@ const Settings = () => {
       <Layout>
          <View style={styles.container}>
             <View style={styles.logoContainer}>
-               <Image
-                  source={logo}
-                  style={styles.image}
-               />
+               <Image source={logo} style={styles.image} />
             </View>
             <View style={{ height: 40 }} />
+            <Text
+               style={{
+                  textAlign: 'center',
+                  marginBottom: 25,
+                  fontFamily: 'Inter-Bold',
+                  fontSize: 20,
+               }}
+            >
+               Bienvenida, Itzel
+            </Text>
             <View style={styles.textContainer}>
-               <Text>Cerrar Sesión</Text>
+               <Text style={{ fontFamily: 'Inter' }}>Cerrar Sesión</Text>
             </View>
          </View>
       </Layout>
@@ -37,9 +44,9 @@ const styles = StyleSheet.create({
    textContainer: {
       paddingHorizontal: 10,
       paddingVertical: 20,
-      backgroundColor:"#fff",
+      backgroundColor: '#fff',
       borderRadius: 4,
-   }
+   },
 });
 
 export default Settings;
