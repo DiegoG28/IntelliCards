@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import { StyleSheet } from 'react-native';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import OnboardingStack from '@navigation/OnboardingStack';
 import Login from '@screens/Login';
 import BottomNav from '@components/BottomNav';
-
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const Stack = createStackNavigator();
 

@@ -1,28 +1,51 @@
+import React, { useCallback } from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 import GoogleButton from '@components/GoogleButton';
 import Layout from '@components/Layout';
 import rectangularLogo from '@assets/rectangular-logo.png';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import * as WebBrowser from 'expo-web-browser';
+import { useNavigation } from '@react-navigation/native';
+import {
+   makeRedirectUri,
+   useAuthRequest,
+   ResponseType,
+} from 'expo-auth-session';
 
-const WEB_CLIENT_ID =
-   '621833253404-hkbp55ntsdu7anon0uaia0clfcjuflkd.apps.googleusercontent.com';
+WebBrowser.maybeCompleteAuthSession();
 
-GoogleSignin.configure({
-   webClientId: WEB_CLIENT_ID,
-});
+const Login = () => {
+   const navigation = useNavigation();
 
-const Login = ({ navigation }) => {
-   const signInWithGoogle = async () => {
-      try {
-         await GoogleSignin.hasPlayServices();
-         const userInfo = await GoogleSignin.signIn();
-         navigation.navigate('Navigation');
-         console.log(userInfo);
-         // Haz algo con la información del usuario (almacénala en el estado, envíala a tu servidor, etc.)
-      } catch (error) {
-         console.error('Error al iniciar sesión con Google:', error);
-      }
+   const discovery = {
+      authorizationEndpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
+      tokenEndpoint: 'https://oauth2.googleapis.com/token',
+      revocationEndpoint: 'https://oauth2.googleapis.com/revoke',
    };
+
+   const [request, response, promptAsync] = useAuthRequest(
+      {
+         clientId:
+            '621833253404-hkbp55ntsdu7anon0uaia0clfcjuflkd.apps.googleusercontent.com',
+         scopes: ['openid', 'profile', 'email'],
+         responseType: ResponseType.Token,
+         usePKCE: false,
+         redirectUri: makeRedirectUri({ useProxy: true }),
+      },
+      discovery
+   );
+
+   const handleGoogleSignIn = useCallback(async () => {
+      try {
+         console.log('Redirect URI:', makeRedirectUri({ useProxy: true }));
+         const authResult = await promptAsync();
+
+         if (authResult.type === 'success') {
+            navigation.navigate('Home');
+         }
+      } catch (error) {
+         console.log('Error during Google sign in:', error);
+      }
+   }, [promptAsync, navigation]);
 
    return (
       <Layout>
@@ -32,7 +55,7 @@ const Login = ({ navigation }) => {
                Inicia sesión fácilmente con tu cuenta de Google. No te
                preocupes, tus datos están completamente seguros.
             </Text>
-            <GoogleButton onPress={signInWithGoogle} />
+            <GoogleButton onPress={handleGoogleSignIn} />
          </View>
       </Layout>
    );

@@ -39,7 +39,6 @@ const Home = ({ navigation }) => {
       // if (!muscleInputValue) return;
       try {
          const dummyCard = await getMuscles(muscleInputValue);
-         console.log(dummyCard);
          //puede agregar mensaje de error
          if (!dummyCard) return;
          // Obtener la lista de carpetas del almacenamiento local
@@ -62,16 +61,16 @@ const Home = ({ navigation }) => {
 
          // Actualizar el estado de la lista de carpetas
          setFolders(folders);
-      } catch (error) {
-         console.error('Error creating card:', error);
+      } catch {
+         console.error('Error creating card:');
       }
    };
 
    const saveFoldersToLocalStorage = async (folders) => {
       try {
          await AsyncStorage.setItem('folders', JSON.stringify(folders));
-      } catch (error) {
-         console.error('Error saving folders to local storage:', error);
+      } catch {
+         console.error('Error saving folders to local storage:');
       }
    };
 
@@ -99,8 +98,8 @@ const Home = ({ navigation }) => {
             await AsyncStorage.setItem('folders', JSON.stringify(folders));
          }
          return folders;
-      } catch (error) {
-         console.error('Error getting folders from local storage:', error);
+      } catch {
+         console.error('Error getting folders from local storage:');
          return [];
       }
    };
