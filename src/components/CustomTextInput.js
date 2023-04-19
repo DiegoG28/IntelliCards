@@ -2,7 +2,7 @@ import { View, TextInput, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons/faPen';
 
-const CustomTextInput = () => {
+const CustomTextInput = ({ label, onChangeText }) => {
    return (
       <View style={styles.container}>
          <FontAwesomeIcon
@@ -12,8 +12,9 @@ const CustomTextInput = () => {
          />
          <TextInput
             style={styles.input}
-            placeholder="Escribe el músculo"
+            placeholder={label}
             underlineColorAndroid="transparent"
+            onChangeText={onChangeText}
          />
       </View>
    );

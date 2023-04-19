@@ -9,7 +9,11 @@ const TouchableFolder = props => {
          style={styles.button}
          onPress={onPress}
       >
-         <FontAwesomeIcon icon={icon} size={40} color={'#fecc6d'}/>
+         <FontAwesomeIcon
+            icon={icon}
+            size={40}
+            color={'#fecc6d'}
+         />
          <Text style={styles.text}>{children}</Text>
       </TouchableOpacity>
    );
@@ -17,13 +21,13 @@ const TouchableFolder = props => {
 
 const styles = StyleSheet.create({
    button: {
-      marginRight: 10,
-      marginBottom: 10
+      alignItems: 'center',
+      marginBottom: 10,
    },
    text: {
-    fontFamily: 'Quicksand-SemiBold',
-    lineHeight: 20,
-    fontSize: 12,
+      fontFamily: 'Quicksand-SemiBold',
+      lineHeight: 20,
+      fontSize: 12,
    },
 });
 
