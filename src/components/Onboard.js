@@ -10,7 +10,6 @@ const Onboard = props => {
       <View style={styles.container}>
          <Text style={styles.title}>{title}</Text>
          <Image source={image} style={styles.image} />
-         <View style={styles.image} />
          <Text style={styles.description}>{children}</Text>
          <View style={styles.buttonContainer}>
             {isLastScreen ? (
