@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import { StyleSheet } from 'react-native';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import OnboardingStack from '@navigation/OnboardingStack';
@@ -28,17 +28,17 @@ export default function App() {
       <NavigationContainer>
          <Stack.Navigator>
             <Stack.Screen
-               name="Onboarding"
+               name='Onboarding'
                component={OnboardingStack}
                options={{ headerShown: false }}
             />
             <Stack.Screen
-               name="Login"
+               name='Login'
                component={Login}
                options={{ headerShown: false }}
             />
             <Stack.Screen
-               name="Navigation"
+               name='Navigation'
                component={BottomNav}
                options={{ headerShown: false }}
             />

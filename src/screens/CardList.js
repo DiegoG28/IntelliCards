@@ -156,8 +156,8 @@ const CardList = ({ route, navigation }) => {
 
             setCards(folder.cards);
          }
-      } catch (error) {
-         console.error('Error updating folders:', error);
+      } catch {
+         console.error('Error updating folders:');
       }
    };
 
