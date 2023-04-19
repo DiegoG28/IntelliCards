@@ -8,14 +8,16 @@ import IconButton from '@components/IconButton';
 import TouchableFolder from '@components/TouchableFolder';
 import { faPlus, faFolder } from '@fortawesome/free-solid-svg-icons';
 import logo from '@assets/logo.png';
+import { MusclesApi } from '@api/MusclesApi';
 
 const Home = ({ navigation }) => {
+   const { getMuscles } = MusclesApi;
    const [folders, setFolders] = useState([]);
    const [modalVisible, setModalVisible] = useState(false);
    const [muscleInputValue, setMuscleInputValue] = useState('');
    const [folderInputValue, setFolderInputValue] = useState('');
 
-   const handleCardList = folder => {
+   const handleCardList = (folder) => {
       navigation.navigate('CardList', { folder });
    };
 
@@ -36,14 +38,10 @@ const Home = ({ navigation }) => {
    const handleCreateCard = async () => {
       // if (!muscleInputValue) return;
       try {
-         const dummyCard = {
-            title: muscleInputValue,
-            origin: 'Dummy Origin',
-            insertion: 'Dummy Insertion',
-            function: 'Dummy Function',
-            innervation: 'Dummy Innervation',
-         };
-
+         const dummyCard = await getMuscles(muscleInputValue);
+         console.log(dummyCard);
+         //puede agregar mensaje de error
+         if (!dummyCard) return;
          // Obtener la lista de carpetas del almacenamiento local
          const folders = await getFoldersFromLocalStorage();
 
@@ -51,7 +49,13 @@ const Home = ({ navigation }) => {
          const currentFolder = folders[0];
 
          // Agregar la nueva tarjeta a la propiedad "cards" de la carpeta
-         currentFolder.cards.push(dummyCard);
+         currentFolder.cards.push({
+            title: dummyCard[0].name,
+            origin: dummyCard[0].origin,
+            insertion: dummyCard[0].insertion,
+            function: dummyCard[0].action,
+            innervation: dummyCard[0].innervation,
+         });
 
          // Guardar la lista actualizada de carpetas en el almacenamiento local
          await AsyncStorage.setItem('folders', JSON.stringify(folders));
@@ -63,7 +67,7 @@ const Home = ({ navigation }) => {
       }
    };
 
-   const saveFoldersToLocalStorage = async folders => {
+   const saveFoldersToLocalStorage = async (folders) => {
       try {
          await AsyncStorage.setItem('folders', JSON.stringify(folders));
       } catch (error) {
@@ -79,7 +83,7 @@ const Home = ({ navigation }) => {
             const defaultFolder = { name: 'Mi carpeta', cards: [] };
             await AsyncStorage.setItem(
                'folders',
-               JSON.stringify([defaultFolder]),
+               JSON.stringify([defaultFolder])
             );
             return [defaultFolder];
          }
@@ -87,7 +91,7 @@ const Home = ({ navigation }) => {
 
          // Comprueba si la carpeta por defecto es la primera en la lista, si no, la coloca al principio
          const defaultFolderIndex = folders.findIndex(
-            folder => folder.name === 'Mi carpeta',
+            (folder) => folder.name === 'Mi carpeta'
          );
          if (defaultFolderIndex !== 0) {
             const defaultFolder = folders.splice(defaultFolderIndex, 1)[0];
@@ -113,22 +117,16 @@ const Home = ({ navigation }) => {
       <Layout>
          <View style={styles.container}>
             <View style={styles.logoContainer}>
-               <Image
-                  source={logo}
-                  style={styles.image}
-               />
+               <Image source={logo} style={styles.image} />
                <Text style={styles.logoText}>IntelliCards</Text>
             </View>
             <View style={styles.createSection}>
                <TextInput
-                  label="Escriba el músculo"
+                  label='Escriba el músculo'
                   onChangeText={setMuscleInputValue}
                />
                <View style={{ height: 20 }} />
-               <TextButton
-                  color="#C6E9FB"
-                  onPress={handleCreateCard}
-               >
+               <TextButton color='#C6E9FB' onPress={handleCreateCard}>
                   Crear tarjeta
                </TextButton>
             </View>
@@ -146,12 +144,12 @@ const Home = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                <IconButton
                   icon={faPlus}
-                  color="#D8B2E5"
+                  color='#D8B2E5'
                   onPress={() => setModalVisible(true)}
                />
             </View>
             <Modal
-               animationType="slide"
+               animationType='slide'
                transparent={true}
                visible={modalVisible}
                onRequestClose={() => setModalVisible(false)}
@@ -172,14 +170,11 @@ const Home = ({ navigation }) => {
                      }}
                   >
                      <TextInput
-                        label="Nombre de carpeta"
+                        label='Nombre de carpeta'
                         onChangeText={setFolderInputValue}
                      />
                      <View style={{ marginBottom: 15 }} />
-                     <TextButton
-                        color="#C6E9FB"
-                        onPress={handleCreateFolder}
-                     >
+                     <TextButton color='#C6E9FB' onPress={handleCreateFolder}>
                         Crear carpeta
                      </TextButton>
                   </View>
