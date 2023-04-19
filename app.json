@@ -23,7 +23,6 @@
       },
       "web": {
          "favicon": "./assets/favicon.png"
-      },
-      "package": "com.upqroo.intellicards"
+      }
    }
 }
