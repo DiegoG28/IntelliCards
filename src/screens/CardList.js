@@ -7,22 +7,26 @@ import TextButton from '@components/TextButton';
 import MinimizedCard from '@components/MinimizedCard';
 import logo from '@assets/logo.png';
 
+import { MusclesApi } from '@api/MusclesApi';
+
 const CardList = ({ route }) => {
    const { folder } = route.params;
    const [cardInputValue, setCardInputValue] = useState('');
    const [cards, setCards] = useState(folder.cards);
+   const { getMuscles } = MusclesApi;
 
    const handleCreateCard = async () => {
-      const newCard = {
-         title: cardInputValue,
-         origin: 'Dummy Origin',
-         insertion: 'Dummy Insertion',
-         function: 'Dummy Function',
-         innervation: 'Dummy Innervation',
-      };
-
+      const newCard = await getMuscles(cardInputValue);
+      //puede agregar mensaje de error
+      if (!newCard) return;
       // Crear una nueva lista de tarjetas que incluya la nueva tarjeta
-      const newCards = cards.concat(newCard);
+      const newCards = cards.concat({
+         title: newCard[0].name,
+         origin: newCard[0].origin,
+         insertion: newCard[0].insertion,
+         function: newCard[0].action,
+         innervation: newCard[0].innervation,
+      });
 
       // Actualizar el estado con la nueva lista de tarjetas
       setCards(newCards);
@@ -40,14 +44,14 @@ const CardList = ({ route }) => {
 
             // Encontrar la carpeta que se actualizó en la lista de carpetas
             const updatedFolderIndex = parsedFolders.findIndex(
-               f => f.name === folder.name,
+               (f) => f.name === folder.name
             );
             parsedFolders[updatedFolderIndex] = folder;
 
             // Guardar la lista actualizada de carpetas en el almacenamiento local
             await AsyncStorage.setItem(
                'folders',
-               JSON.stringify(parsedFolders),
+               JSON.stringify(parsedFolders)
             );
 
             setCards(folder.cards);
@@ -61,21 +65,15 @@ const CardList = ({ route }) => {
       <Layout>
          <View style={styles.container}>
             <View style={styles.logoContainer}>
-               <Image
-                  source={logo}
-                  style={styles.image}
-               />
+               <Image source={logo} style={styles.image} />
             </View>
             <View style={styles.createSection}>
                <TextInput
-                  label="Escriba el músculo"
+                  label='Escriba el músculo'
                   onChangeText={setCardInputValue}
                />
                <View style={{ height: 20 }} />
-               <TextButton
-                  color="#C6E9FB"
-                  onPress={handleCreateCard}
-               >
+               <TextButton color='#C6E9FB' onPress={handleCreateCard}>
                   Crear tarjeta
                </TextButton>
             </View>
