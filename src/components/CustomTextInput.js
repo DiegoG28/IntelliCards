@@ -2,19 +2,26 @@ import { View, TextInput, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons/faPen';
 
-const CustomTextInput = ({ label, onChangeText }) => {
+const CustomTextInput = ({ label, onChangeText, isPassword=false, icon }) => {
    return (
       <View style={styles.container}>
-         <FontAwesomeIcon
+         {icon ? ( <FontAwesomeIcon
+            icon={icon}
+            size={20}
+            style={styles.icon}
+         />) : (
+            <FontAwesomeIcon
             icon={faPen}
             size={20}
             style={styles.icon}
          />
+         )} 
          <TextInput
             style={styles.input}
             placeholder={label}
             underlineColorAndroid="transparent"
             onChangeText={onChangeText}
+            secureTextEntry={isPassword}
          />
       </View>
    );

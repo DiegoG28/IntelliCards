@@ -1,7 +1,12 @@
 import { StyleSheet, View, Image, Text } from 'react-native';
 import GoogleButton from '@components/GoogleButton';
 import Layout from '@components/Layout';
+import TextInput from '@components/CustomTextInput'
 import rectangularLogo from '@assets/rectangular-logo.png';
+import CustomTextInput from '../components/CustomTextInput';
+import TextButton from '@components/TextButton';
+import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+
 
 const Login = ({ navigation }) => {
    const handleSignIn = () => {
@@ -19,7 +24,18 @@ const Login = ({ navigation }) => {
                Inicia sesión fácilmente con tu cuenta de Google. No te
                preocupes, tus datos están completamente seguros.
             </Text>
-            <GoogleButton onPress={handleSignIn} />
+            <CustomTextInput label='Usuario' icon={faUser}/>
+            <View style={{margin: 10}}/>
+            <CustomTextInput label='Contraseña' isPassword icon={faLock}/>
+            <View style={{margin: 10}}/>
+            <TextButton 
+               color="#C6E9FB"
+               onPress={handleSignIn}
+               >
+                  Inicia sesión
+               </TextButton>
+
+            {/* <GoogleButton onPress={handleSignIn} /> */}
          </View>
       </Layout>
    );
